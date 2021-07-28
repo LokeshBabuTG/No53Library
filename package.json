@@ -1,0 +1,25 @@
+{
+  "name": "no53library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LokeshBabuTG/No53Library.git"
+  },
+  "author": "Lokesh Babu T G",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LokeshBabuTG/No53Library/issues"
+  },
+  "homepage": "https://github.com/LokeshBabuTG/No53Library#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "handlebars": "^4.7.7",
+    "lodash": "^4.17.21",
+    "luxon": "^2.0.1"
+  }
+}
