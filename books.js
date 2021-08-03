@@ -5,6 +5,11 @@ var _c = require('lodash-contrib');
 
 var booksDir = __dirname + '\\public\\assets\\data\\books';
 
+
+var books = {};
+
+initialise();
+
 function initialise() {
 	if(_) {
 		_ = require('lodash');
@@ -12,48 +17,35 @@ function initialise() {
 	if(_c) {
 		_c = require('lodash-contrib');
 	}
+	
+	
+	books = fs.readdirSync(booksDir)
+		.filter(file => file.endsWith(".json"))
+		.reduce(function(bks, file){
+				bks[file] = JSON.parse( fs.readFileSync(booksDir + '\\' + file, 'UTF-8'));
+				return bks;
+		}, {});
 }
 
 
 module.exports.filterBooks = function (term) {
-	var _ = require('lodash');
-	var _c = require('lodash-contrib');
-	initialise();
 	
-	
-	var books = {};
-	
-    fs.readdirSync(booksDir)
-	.filter(file => file.endsWith(".json"))
-	.forEach(function (file) {
-		books[file] = 
-			JSON.parse(
-				fs.readFileSync(booksDir + '\\' + file, 'UTF-8')
-			);
-	});
-	
-	books = _.chain(books).flatMap(booksCollections => booksCollections).filter(book => _c.strContains(_c.lowerCase(book["BOOK NAME"]), term)).slice(0, 10).value()
+	return _.chain(books)
+	.flatMap(booksCollections => booksCollections)
+	.filter(book => 
+				_c.strContains(
+					_c.lowerCase(book["BOOK NAME"]), 
+					_c.lowerCase(term)
+				)
+			)
+	.slice(0, 10)
+	.value()
 	
 	
 	return books;
 };
 
 module.exports.getBook = function (bookName) {
-	var _ = require('lodash');
-	var _c = require('lodash-contrib');
-	initialise();
-	
-	
-	var books = {};
-	
-    fs.readdirSync(booksDir)
-	.filter(file => file.endsWith(".json"))
-	.forEach(function (file) {
-		books[file] = 
-			JSON.parse(
-				fs.readFileSync(booksDir + '\\' + file, 'UTF-8')
-			);
-	});
 	
 	var book = 
 	_.chain(books)
