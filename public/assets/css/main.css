@@ -3897,4 +3897,8 @@
 	
 
 
-//Customizations
+/* Customizations */
+
+input[type="text"].ui-autocomplete-input {
+	color : #000000;
+}

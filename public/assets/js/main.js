@@ -85,31 +85,13 @@
 
 $( document ).ready(function() {
     console.log( "ready!" );
-	var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
+	
     $( "#query" ).autocomplete({
-      source: availableTags
-    });
+      source: "./filterBooks"
+    }).autocomplete( "instance" )._renderItem = function( ul, book ){
+		var a = $("<a>").attr("href", "./getBook?bookName=" + book["BOOK NAME"]).text(book["BOOK NAME"]);
+		return $( "<li>" )
+		.append(a)
+		.appendTo( ul );
+    };;
 });
