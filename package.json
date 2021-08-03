@@ -10,6 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/LokeshBabuTG/No53Library.git"
   },
+  "engines": {
+    "node": "12.x",
+    "npm": "6.x"
+  },
   "author": "Lokesh Babu T G",
   "license": "ISC",
   "bugs": {

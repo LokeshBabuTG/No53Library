@@ -60,6 +60,7 @@ module.exports.getBook = function (bookName) {
 	.flatMap(booksCollections => booksCollections)
 	.filter(book => _c.strContains(book["BOOK NAME"], bookName))
 	.slice(0, 1)
+	.head()
 	.value()
 	
 	
