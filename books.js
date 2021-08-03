@@ -3,7 +3,7 @@ const fs = require('fs');
 var _ = require('lodash');
 var _c = require('lodash-contrib');
 
-var booksDir = __dirname + '\\public\\assets\\data\\books';
+var booksDir = __dirname + '/public/assets/data/books';
 
 
 var books = {};
