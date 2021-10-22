@@ -55,6 +55,5 @@ module.exports.getBook = function (bookName) {
 	.head()
 	.value()
 	
-	
 	return book;
 };
