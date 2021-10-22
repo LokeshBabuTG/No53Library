@@ -4,6 +4,8 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+var googleScriptsUrl = "https://script.google.com/macros/s/AKfycbxsiPYOsGJDdQSUx35-xGgG560XPAw2OUytLfaUkjFo9ZrC-I9e3GCDscPCPv8dPKev9g/exec?method=";
+
 (function($) {
 
 	var	$window = $(window),
@@ -87,11 +89,12 @@ $( document ).ready(function() {
     console.log( "ready!" );
 	
     $( "#query" ).autocomplete({
-      source: "./filterBooks"
+	  minLength: 2,
+      source: "filterBooks"
     }).autocomplete( "instance" )._renderItem = function( ul, book ){
 		var a = $("<a>").attr("href", "./getBook?bookName=" + book["BOOK NAME"]).text(book["BOOK NAME"]);
 		return $( "<li>" )
 		.append(a)
 		.appendTo( ul );
-    };;
+    };
 });

@@ -1,8 +1,10 @@
 const fs = require('fs');
 var _ = require('lodash');
 var _c = require('lodash-contrib');
+const axios = require('axios');
 
 var booksDir = __dirname + '/public/assets/data/books';
+var googleScriptsUrl = "https://script.google.com/macros/s/AKfycbxsiPYOsGJDdQSUx35-xGgG560XPAw2OUytLfaUkjFo9ZrC-I9e3GCDscPCPv8dPKev9g/exec?method=";
 
 
 var books = {};
@@ -38,18 +40,18 @@ module.exports.filterBooks = function (term) {
 				)
 			)
 	.slice(0, 10)
-	.value()
+	.value();
 	
 
 };
 
-module.exports.getBook = function (bookName) {
-	
-	return _.chain(books)
-	.flatMap(booksCollections => booksCollections)
-	.filter(book => _c.strContains(book["BOOK NAME"], bookName))
-	.slice(0, 1)
-	.head()
-	.value();
+module.exports.getBook = async function (bookName) {
+
+	try {
+		const response = await axios.get(googleScriptsUrl + 'getBook&bookName=' + bookName);
+		return response.data;
+	} catch (e) {
+		console.log(error);
+	}
 
 };

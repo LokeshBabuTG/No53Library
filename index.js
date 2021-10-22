@@ -1,8 +1,5 @@
 const express = require('express')
-const app = express()
-const path = require('path');
-const fs = require('fs');
-var _ = require('lodash');
+const app = express();
 
 const handlebars = require('express-handlebars');
 
@@ -47,12 +44,20 @@ app.get('/searchBooks', function (req, res) {
 	res.render('searchBooks', searchedBooks);
 });
 
-app.get('/getBook', function (req, res) {
-	var bookName = req.query.bookName;
-	var book = books.getBook(bookName);
-	res.render('searchBooks', {
-		book : book
-	});
+app.get('/getBook', async function (req, res) {
+	try {
+		var bookName = req.query.bookName;
+		var book = await books.getBook(bookName);
+		res.render('searchBooks', {
+			book: book
+		});
+	} catch (e) {
+		console.log(error);
+		res.write("error occured" + e);
+		return next(error);
+	}
+
+
 });
 
 
