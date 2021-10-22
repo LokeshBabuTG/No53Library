@@ -90,7 +90,7 @@ $( document ).ready(function() {
 	
     $( "#query" ).autocomplete({
 	  minLength: 2,
-      source: "filterBooks"
+      source: googleScriptsUrl + "filterBooks"
     }).autocomplete( "instance" )._renderItem = function( ul, book ){
 		var a = $("<a>").attr("href", "./getBook?bookName=" + book["BOOK NAME"]).text(book["BOOK NAME"]);
 		return $( "<li>" )
